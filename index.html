@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>webdev || cheatsheet</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -14,9 +15,10 @@
             <main class="wrapper">
                 <aside class="sidebar">
                     <h2 class="section-title">All posts</h2>
+                    <button id="button-test">Kliknij tutaj żeby zobaczyć event! :)</button>
                     <ul class="list titles">
-                        <li><a href="#article-1" class="active"><span>Article 1</span></a></li>
-                        <li><a href="#article-2"><span>Article 2</span></a></li>
+                        <li><a href="#article-1"><span>Article 1</span></a></li>
+                        <li><a href="#article-2" class="active"><span>Article 2</span></a></li>
                         <li><a href="#article-3"><span>Article 3</span></a></li>
                         <li><a href="#article-4"><span>Article 4</span></a></li>
                         <li><a href="#article-5"><span>Article 5</span></a></li>
@@ -28,18 +30,13 @@
                     </ul>
                 </aside>
                 <section class="posts">
-                    <article class="post active" id="article-1">
-                        <h3 class="post-title">Article 1</h3>
-                        <p class="post-author">by Marion Berry</p>
+                    <article class="post" id="article-1">
+                        <h3 class="post-title">Propagacja</h3>
+                        <p class="post-author">Javascript</p>
                         <div class="post-content">
-                            <p>Duis non dolor efficitur erat interdum fringilla a lobortis dolor. Aenean in massa
-                                viverra, pretium augue et, imperdiet diam. Proin varius vitae lectus ut suscipit. Etiam
-                                metus lacus, molestie at ante eget, gravida tristique metus. Morbi finibus elit mi, ut
-                                aliquam libero tempor eu.</p>
+                            <p>Rozpoczynając pracę z eventami, warto wspomnieć o kluczowej zasadzie ich działania. Zastanów się nad taką sytuacją: mamy link, w którym umieściliśmy obrazek. Czy kliknięcie obrazka oznacza też kliknięcie linka? Musi tak być, bo inaczej musielibyśmy przypisać funkcję do kliknięcia każdego elementu w linku!</p>
 
-                            <p>Curabitur a arcu ut nunc ornare tempor. Vestibulum et augue purus. Sed mattis auctor
-                                iaculis. Duis placerat tempus nisl, et commodo sem varius sed. Ut ac ultrices leo.
-                                Aliquam efficitur augue a scelerisque lacinia. Donec sit amet justo lacus.</p>
+                            <p>W JS zostało to rozwiązane za pomocą bąbelkowania, czy bardziej profesjonalnie – propagacji. W podanym przykładzie obrazek otrzyma event click. Następnie przekaże ten event swojemu rodzicowi – linkowi. Dzięki temu link też będzie mógł zareagować na kliknięcie. Link również przekaże ten event swojemu rodzicowi – i tak event będzie bąbelkować do samej góry, aż do body, document i wreszcie window.</p>
 
                             <p>Duis tincidunt tellus non lorem molestie lobortis. Ut nec mauris consectetur, convallis
                                 nisl vel, venenatis magna. Sed efficitur egestas purus, eu fermentum leo sodales in.</p>
@@ -99,19 +96,24 @@
                         </div>
                     </article>
                     <article class="post" id="article-4">
-                        <h3 class="post-title">Article 4</h3>
-                        <p class="post-author">by Kitty Toebean</p>
+                        <h3 class="post-title">Handler</h3>
+                        <p class="post-author">Javascript</p>
                         <div class="post-content">
-                            <p>Morbi vel cursus nulla, vel varius mauris. Suspendisse sed elit sit amet risus faucibus
-                                vestibulum ut sit amet purus. Donec orci est, condimentum ut quam quis, scelerisque
-                                fringilla ligula.</p>
+                            <p>Ze słowem handler (fragment nazwy funkcji titleClickHandler) spotkasz się dość często – tak zwykle nazywa się funkcję, która jest wykonywana w reakcji na event.</p>
 
-                            <p>Quisque bibendum nisl id quam sagittis, id pretium dolor scelerisque. Suspendisse non
-                                odio nec velit dapibus placerat non a libero.</p>
+                            <img src="images/handler.JPG" alt="">
 
-                            <p>Vivamus at tristique ex, feugiat sagittis ex. Cras cursus, ipsum et efficitur commodo,
-                                urna sapien rutrum magna, quis sodales justo ligula eget nunc. In hac habitasse platea
-                                dictumst.</p>
+                           <ul>
+                               <li><span class="red-text">buttonTest</span>, to stała która zawiera odniesienie do guzika (a konkretniej do elementu o <span class="red-text">id="button-test"</span>),</li>
+                               <li><span class="red-text">.addEventListener</span> jest wybraniem funkcji <span class="red-text">addEventListener</span> przypisanej do tego guzika – czyli że chcemy powiązać jakąś funkcję z jakimś eventem występującym na tym elemencie,</li>
+                               <li><span class="red-text">( )</span> – te nawiasy, umieszczone bezpośrednio po nazwie funkcji, mówią nam, że wykonujemy funkcję,
+                                    <ul>
+                                        <li><span class="red-text">'click'</span> to rodzaj eventu, którego będziemy nasłuchiwać,</li>
+                                        <li><span class="red-text">titleClickHandler</span> to nazwa funkcji, która ma zostać wykonana po wystąpieniu tego eventu na tym elemencie.</li>
+                                    </ul>
+                                </li>
+                           </ul>
+                           <p>Zwróć też uwagę, że w deklaracji funkcji <span class="red-text">titleClickHandler</span> nazwaliśmy argument event. Zawiera on dużo informacji i funkcji, z których jedna już za chwilę nam się przyda.</p>
                         </div>
                         <div class="post-tags">
                             <p><strong>Tags:</strong></p>
@@ -123,18 +125,21 @@
                         </div>
                     </article>
                     <article class="post" id="article-5">
-                        <h3 class="post-title">Article 5</h3>
-                        <p class="post-author">by Marion Berry</p>
+                        <h3 class="post-title">This</h3>
+                        <p class="post-author">Programowanie</p>
                         <div class="post-content">
-                            <p>Suspendisse sem eros, euismod condimentum arcu ac, consequat fermentum orci. Nam
-                                convallis lacus nec interdum vestibulum. Vestibulum luctus, quam eu tristique ornare,
-                                lorem nibh sodales enim, vitae tempor dolor ante vitae tortor.</p>
+                            <img src="images/this.JPG" alt="">
 
-                            <p>Duis venenatis metus quis luctus lobortis. In porttitor ipsum eget ligula aliquam ornare.
-                                Cras malesuada urna id volutpat sodales.</p>
-
-                            <p>Donec lobortis ultricies turpis, eu viverra magna gravida quis. Fusce sit amet pretium
-                                nulla. Duis rutrum metus vel libero sodales, pellentesque varius ex pulvinar.</p>
+                            <p>Wewnątrz funkcji <span class="red-text">titleClickHandler</span> mamy do dyspozycji dwa źródła informacji o evencie, czyli w naszym przypadku – o kliknięciu:</p>
+                            <ol>
+                                <li>argument funkcji, który nazwaliśmy <span class="red-text">event</span>,</li>
+                                <li>obiekt <span class="red-text">this</span></li>
+                            </ol>
+                           
+                            <p>Wcześniej już sprawdzaliśmy, jakie informacje znajdują się w argumencie <span class="red-text">event</span>. Znaleźliśmy w nim m.in. informację <b>target</b>, która jednak w naszym przypadku zawierała odniesienie do spana, znajdującego się w linku. Dlatego skupiliśmy się na obiekcie <span class="red-text">this</span>, który – w przypadku handlera eventu – będzie wskazywał na element, do którego dodaliśmy listener.</p>
+                            <p>Słowo <span class="red-text">this</span> określiliśmy jako "magiczne", ponieważ – szczególnie na początku nauki JS – wydaje się nieco tajemnicze. Wynika to z faktu, że zmienia ono znaczenie, w zależności od tego, gdzie zostało użyte. Dlatego przyjmiemy zasadę, że dla unikania błędów i zwiększenia czytelności kodu, będziemy go używać jak najrzadziej – zapiszemy jego wartość do stałej, która będzie miała bardziej przyjazną nazwę.</p>
+                            <p>Uwaga kodilli:</p>
+                            <img src="images/this2.JPG" alt="">
                         </div>
                         <div class="post-tags">
                             <p><strong>Tags:</strong></p>
@@ -168,26 +173,34 @@
                             </ul>
                         </div>
                     </article>
-                    <article class="post" id="article-7">
-                        <h3 class="post-title">Article 7</h3>
-                        <p class="post-author">by Kitty Toebean</p>
+                    <article class="post active" id="article-7">
+                        <h3 class="post-title">classList</h3>
+                        <p class="post-author">Javascript</p>
                         <div class="post-content">
-                            <p>Donec eleifend mauris ac nisl fermentum, ac fermentum turpis dignissim. Aliquam diam
-                                nisl, imperdiet a varius eget, lobortis sed nisi. Nullam suscipit ipsum sed magna
-                                blandit, sed pellentesque urna malesuada.</p>
+                            <p>Ze słowem handler (fragment nazwy funkcji titleClickHandler) spotkasz się dość często – tak zwykle nazywa się funkcję, która jest wykonywana w reakcji na event.</p>
 
-                            <p>Duis vestibulum arcu et lectus viverra porta. Praesent tempor lacus eget quam mattis, sit
-                                amet venenatis diam ultrices. Morbi gravida sapien quis ligula tincidunt, vel sagittis
-                                erat ultrices.</p>
+                            <img src="images/handler.JPG" alt="">
 
-                            <p>Ut orci tellus, laoreet ac diam ut, tempus bibendum nisi. Nam egestas sagittis nibh.
-                                Curabitur tristique dui quis egestas pretium. Duis eu felis orci.</p>
+                           <ul>
+                               <li><span class="red-text">activeLink</span> to pojedynczy link, spośród wyszukanych linków z klasą <span class="red-text">active</span>,</li>
+                               <li><span class="red-text">.classList</span> to "biblioteka", zawierająca informacje i funkcje dotyczące klas tego elementu,</li>
+                               <li><span class="red-text">.remove</span> to jedna z tych funkcji, służącej do usunięcia klasy,</li>
+                               <li><span class="red-text">( )</span> – te nawiasy, umieszczone bezpośrednio po nazwie funkcji, mówią nam, że wykonujemy funkcję, </li>
+                               <li><span class="red-text">'active'</span> to klasa, którą chcemy usunąć.</li>          
+                            </ul>
+                            <ul>
+                                <li><span class="red-text">add</span> – dodawanie klasy,</li>
+                                <li><span class="red-text">toggle</span> – "przełączanie" klasy, czyli "jeśli element nie ma podanej klasy, to ją dodaj – w przeciwnym wypadku usuń tę klasę z tego elementu",</li>
+                                <li><span class="red-text">contains</span> – sprawdzenie, czy element posiada daną klasę.</li>
+                            </ul>
+                           
+                            <p>Świetnie – usuwanie aktywnej klasy już działa. Możesz to sprawdzić, dodając któremuś linkowi klasę <span class="red-text">active</span> w kodzie HTML. Po kliknięciu któregokolwiek linka, klasa zostanie usunięta.</p>
                         </div>
                         <div class="post-tags">
                             <p><strong>Tags:</strong></p>
                             <ul class="list list-horizontal">
-                                <li><a href="#">code</a></li>
-                                <li><a href="#">news</a></li>
+                                <li><a href="#">Javascript</a></li>
+                                <li><a href="#">classes</a></li>
                             </ul>
                         </div>
                     </article>
