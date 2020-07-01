@@ -95,12 +95,12 @@ function tagClickHandler(event){
     foundTagLink.classList.add('active');/* add class active */
   
   }/* END LOOP: for each found tag link */
-  
+  console.log('tag', tag);
   generateTitleLinks('[data-tags~="' + tag + '"]'); /* execute function "generateTitleLinks" with article selector as argument */
 }
   
 function addClickListenersToTags(){
-  const tagLinks = document.querySelectorAll('.list li a'); /* find all links to tags */
+  const tagLinks = document.querySelectorAll(optArticleTagsSelector); /* find all links to tags */
   
   for (let tag of tagLinks) {  /* START LOOP: for each link */
   
