@@ -74,9 +74,9 @@ function tagClickHandler(event){
   event.preventDefault(); /* prevent default action for this event */
   
   const clickedElement = this; /* make new constant named "clickedElement" and give it the value of "this" */
-  
+  console.log('clickedElement', clickedElement);
   const href = clickedElement.getAttribute('href'); /* make a new constant "href" and read the attribute "href" of the clicked element */
-  console.log(clickedElement);
+  
   console.log('href', href);
   const tag = href.replace('#tag-', '');/* make a new constant "tag" and extract tag from the "href" constant */
   
@@ -100,7 +100,7 @@ function tagClickHandler(event){
 }
   
 function addClickListenersToTags(){
-  const tagLinks = document.querySelectorAll(optArticleTagsSelector); /* find all links to tags */
+  const tagLinks = document.querySelectorAll('.post-tags .list a'); /* find all links to tags */
   
   for (let tag of tagLinks) {  /* START LOOP: for each link */
   
