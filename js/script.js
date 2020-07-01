@@ -26,6 +26,7 @@ const optArticleSelector = '.post',
 function generateTitleLinks(customSelector = '') {
   console.log('custom selector', customSelector);
   document.querySelector(optTitleListSelector).innerHTML = ''; /* remove contents of titleList */
+  console.log('optArticleSelector', optArticleSelector);
   const articles = document.querySelectorAll(optArticleSelector + customSelector); /* for each article */
   for (let article of articles) {
     const articleId = article.getAttribute('id'); /* get the article id */
@@ -83,7 +84,7 @@ function tagClickHandler(event){
   
   for (let activeTag of activeTags) {/* START LOOP: for each active tag link */
   
-    activeTag.classList.remove('.active'); /* remove class active */
+    activeTag.classList.remove('active'); /* remove class active */
   
   }/* END LOOP: for each active tag link */
   
