@@ -171,14 +171,33 @@ addClickListenersToTags();
 
 
 function generateAuthors() {
+  let allAuthors = {};
   const articles = document.querySelectorAll(optArticleSelector); /* find all articles */
   for (let article of articles) {
     const authorWrapper = article.querySelector(optArticleAuthorSelector);
     let linkHTML = '';
     const author = article.getAttribute('data-author');
     linkHTML = '<a href="#author-' + author + '">' + author + '</a>';
+    console.log('linkHTML', linkHTML);
+    if(!allAuthors.hasOwnProperty(author)) { /* [NEW] check if this link is NOT already in allTags */
+      allAuthors[author] = 1; /* [NEW] add generated code to allTags array */
+    } else {
+      allAuthors[author]++;
+    }
+    console.log(allAuthors);
     authorWrapper.insertAdjacentHTML('beforeend', linkHTML);
   }
+  const authorList = document.querySelector(optAuthorsListSelector);
+
+  let allAuthorsHTML = '';
+
+  for (let author in allAuthors) {
+    allAuthorsHTML += '<a href="#author-' + author + '">' + author + ' ' + '(' + allAuthors[author] + ')'  + '</a>';
+  }
+
+  authorList.innerHTML = allAuthorsHTML;
+  
+
 }
 generateAuthors(); 
 
@@ -188,8 +207,8 @@ function authorClickHandler(event) {
   console.log(clickedElement);
   const href = clickedElement.getAttribute('href');
   console.log(href);
-  const activeAuthors = document.querySelectorAll('a.active[href="#author-"]'); 
-  const author = href.replace('#author-', '');/* make a new constant "tag" and extract tag from the "href" constant */
+  const author = href.replace('#author-', '');
+  const activeAuthors = document.querySelectorAll('a.active[href^="#author-"]'); 
   for (let activeAuthor of activeAuthors) {
     activeAuthor.classList.remove('active');
   }
@@ -201,7 +220,7 @@ function authorClickHandler(event) {
 }
 
 function addClickListenersToAuthors() {
-  const authorLinks = document.querySelectorAll('.post-author a'); 
+  const authorLinks = document.querySelectorAll('a[href^="#author-"]'); 
   for (let authorLink of authorLinks) {
     authorLink.addEventListener('click', authorClickHandler);
   }
