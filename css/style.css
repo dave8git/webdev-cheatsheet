@@ -84,6 +84,10 @@ body {
   font-weight: bold;
 }
 
+.list .list a {
+  color: red;
+}
+
 .list-horizontal li {
   display: inline-block;
 }
@@ -113,5 +117,39 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+
+.tag-size-1 {
+  display: inline-block;
+  font-size: 100%;
+}
+
+.tag-size-2 {
+  display: inline-block;
+  font-size: 125%;
+}
+
+.tag-size-3 {
+  display: inline-block;
+  font-size: 150%;
+}
+
+.tag-size-4 {
+  display: inline-block;
+  font-size: 175%;
+}
+
+.tag-size-5 {
+  display: inline-block;
+  font-size: 200%;
+}
+
+.tag-size-6 {
+  display: inline-block;
+  font-size: 250%;
+}
+
+.tags li {
+  display: inline;
 }
 /*# sourceMappingURL=style.css.map */
