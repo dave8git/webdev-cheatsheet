@@ -4,6 +4,7 @@ const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
 };
 
 const opts = {
@@ -137,12 +138,17 @@ function generateTags(){
   const tagsParams = calculateTagsParams(allTags);
   console.log('tagsParams:', tagsParams);
 
-  let allTagsHTML = ''; /* [NEW] create variable for all linksHTML code */
-
+  // let allTagsHTML = ''; /* [NEW] create variable for all linksHTML code */
+  const allTagsData = {tags: []};
   for (let tag in allTags) { /* [NEW] START LOOP: for each tag in allTags: */
-    allTagsHTML += '<li><a class="' + opts.tagSizes.classPrefix + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">'  + tag +  /*' (' + allTags[tag] + ')'  + */ '</a></li> ';  
+    // allTagsHTML += '<li><a class="' + opts.tagSizes.classPrefix + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">'  + tag +  /*' (' + allTags[tag] + ')'  + */ '</a></li> ';  
+    allTagsData.tags.push({
+      tag: tag,
+      count: allTags[tag],
+      className: opts.tagSizes.classPrefix + calculateTagClass(allTags[tag], tagsParams),
+    });
   } /* [NEW] END LOOP: for each tag in allTags: */
-  tagList.innerHTML = allTagsHTML; /* [NEW] add html from allTagsHTML to tagList */
+  tagList.innerHTML = templates.tagCloudLink(allTagsData); /* [NEW] add html from allTagsHTML to tagList */
 }
   
 generateTags();
