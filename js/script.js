@@ -121,7 +121,7 @@ function generateTags(){
       const linkTagHTML = templates.tagLink(linkTagData); 
   
       linkHTML += linkTagHTML;/* add generated code to html variable */
-      console.log('linkHTML', linkHTML);
+      console.log('linkHTML', linkHTML); // eslint-disable-next-line
       if(!allTags.hasOwnProperty(tag)) { /* [NEW] check if this link is NOT already in allTags */
         allTags[tag] = 1; /* [NEW] add generated code to allTags array */
       } else {
@@ -206,7 +206,7 @@ function generateAuthors() {
     // linkHTML = '<a href="#author-' + author + '">' + author + '</a>';
     const authorHTMLData = {id: author, title: author};
     const authorHTML = templates.authorLink(authorHTMLData);
-    
+    // eslint-disable-next-line
     if(!allAuthors.hasOwnProperty(author)) { /* [NEW] check if this link is NOT already in allTags */
       allAuthors[author] = 1; /* [NEW] add generated code to allTags array */
     } else {
